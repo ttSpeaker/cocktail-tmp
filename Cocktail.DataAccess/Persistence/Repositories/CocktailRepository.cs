@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Cocktails.WebApi.Domain.Models;
-using Cocktails.WebApi.Domain.Repositories;
-using Cocktails.WebApi.Persistence.Contexts;
+using Cocktails.Domain.Models;
+using Cocktails.Domain.Repositories;
+using Cocktails.Persistence.Contexts;
 
-namespace Cocktails.WebApi.Persistence.Repositories
+namespace Cocktails.Persistence.Repositories
 {
     public class CocktailRepository : BaseRepository, ICocktailRepository
     {

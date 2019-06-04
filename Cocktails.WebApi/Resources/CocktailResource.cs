@@ -11,6 +11,9 @@ namespace Cocktails.WebApi.Resources
         public string Name { get; set; }
         public string Thumb { get; set; }
         public string Instructions { get; set; }
+        public string Alcoholic { get; set; }
+        public string Tags { get; set; }
+        public string Glass { get; set; }
 
         public CategoryResource Category { get; set; }
 

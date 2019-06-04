@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cocktails.WebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190603151433_Modified-Relation2")]
-    partial class ModifiedRelation2
+    [Migration("20190604154438_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,7 +41,11 @@ namespace Cocktails.WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Alcoholic");
+
                     b.Property<int>("CategoryId");
+
+                    b.Property<string>("Glass");
 
                     b.Property<string>("Instructions")
                         .IsRequired();
@@ -49,6 +53,8 @@ namespace Cocktails.WebApi.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
+
+                    b.Property<string>("Tags");
 
                     b.Property<string>("Thumb")
                         .IsRequired();
@@ -98,13 +104,13 @@ namespace Cocktails.WebApi.Migrations
 
             modelBuilder.Entity("Cocktails.WebApi.Persistence.Contexts.CocktailIngredient", b =>
                 {
-                    b.HasOne("Cocktails.WebApi.Domain.Models.Ingredient", "Ingredient")
-                        .WithMany("CocktailWith")
+                    b.HasOne("Cocktails.WebApi.Domain.Models.Cocktail", "Cocktail")
+                        .WithMany("IngredientsTo")
                         .HasForeignKey("CocktailId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Cocktails.WebApi.Domain.Models.Cocktail", "Cocktail")
-                        .WithMany("IngredientsTo")
+                    b.HasOne("Cocktails.WebApi.Domain.Models.Ingredient", "Ingredient")
+                        .WithMany("CocktailWith")
                         .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

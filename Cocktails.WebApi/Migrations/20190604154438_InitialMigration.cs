@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cocktails.WebApi.Migrations
 {
-    public partial class ModifiedRelations : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,6 +42,9 @@ namespace Cocktails.WebApi.Migrations
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     Thumb = table.Column<string>(nullable: false),
                     Instructions = table.Column<string>(nullable: false),
+                    Alcoholic = table.Column<string>(nullable: true),
+                    Tags = table.Column<string>(nullable: true),
+                    Glass = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

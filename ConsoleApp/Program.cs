@@ -1,21 +1,35 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
-    class Program
+    class SeedDb
     {
+        private static readonly HttpClient client = new HttpClient();
+
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+             ProcessCategories().Wait();
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+
+            Console.ReadKey();
+        }
+        private static async Task ProcessCategories()
+        {
+            client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(
+            //new MediaTypeWithQualityHeaderValue("application/vnd.github.v3+json"));
+            //client.DefaultRequestHeaders.Add("User-Agent", ".NET Foundation Repository Reporter");
+
+            var stringTask = client.GetStringAsync("https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list");
+
+            var msg = await stringTask;
+            Console.Write(msg);
         }
     }
 }

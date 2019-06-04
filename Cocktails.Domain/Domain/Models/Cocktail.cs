@@ -1,11 +1,11 @@
-﻿using Cocktails.WebApi.Persistence.Contexts;
-using Cocktails.WebApi.Resources;
+﻿using Cocktails.Persistence.Contexts;
+using Cocktails.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cocktails.WebApi.Domain.Models
+namespace Cocktails.Domain.Models
 {
     public class Cocktail
     {

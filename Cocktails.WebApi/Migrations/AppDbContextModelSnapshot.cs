@@ -31,18 +31,6 @@ namespace Cocktails.WebApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 100,
-                            Name = "Cocktail"
-                        },
-                        new
-                        {
-                            Id = 101,
-                            Name = "Beer"
-                        });
                 });
 
             modelBuilder.Entity("Cocktails.WebApi.Domain.Models.Cocktail", b =>
@@ -51,7 +39,11 @@ namespace Cocktails.WebApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Alcoholic");
+
                     b.Property<int>("CategoryId");
+
+                    b.Property<string>("Glass");
 
                     b.Property<string>("Instructions")
                         .IsRequired();
@@ -59,6 +51,8 @@ namespace Cocktails.WebApi.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50);
+
+                    b.Property<string>("Tags");
 
                     b.Property<string>("Thumb")
                         .IsRequired();
@@ -68,32 +62,6 @@ namespace Cocktails.WebApi.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Cocktails");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 100,
-                            CategoryId = 100,
-                            Instructions = "How To Make it",
-                            Name = "Cocktail Name 1",
-                            Thumb = "Image/URL"
-                        },
-                        new
-                        {
-                            Id = 101,
-                            CategoryId = 100,
-                            Instructions = "How To Make it",
-                            Name = "Cocktail Name 2",
-                            Thumb = "Image/URL"
-                        },
-                        new
-                        {
-                            Id = 102,
-                            CategoryId = 100,
-                            Instructions = "How To Make it",
-                            Name = "Cocktail Name 3",
-                            Thumb = "Image/URL"
-                        });
                 });
 
             modelBuilder.Entity("Cocktails.WebApi.Domain.Models.Ingredient", b =>
@@ -109,18 +77,6 @@ namespace Cocktails.WebApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ingredients");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 100,
-                            Name = "Ingrediente 1"
-                        },
-                        new
-                        {
-                            Id = 101,
-                            Name = "Ingrediente 2"
-                        });
                 });
 
             modelBuilder.Entity("Cocktails.WebApi.Persistence.Contexts.CocktailIngredient", b =>
@@ -134,18 +90,6 @@ namespace Cocktails.WebApi.Migrations
                     b.HasIndex("IngredientId");
 
                     b.ToTable("CocktailIngredient");
-
-                    b.HasData(
-                        new
-                        {
-                            CocktailId = 100,
-                            IngredientId = 100
-                        },
-                        new
-                        {
-                            CocktailId = 100,
-                            IngredientId = 101
-                        });
                 });
 
             modelBuilder.Entity("Cocktails.WebApi.Domain.Models.Cocktail", b =>

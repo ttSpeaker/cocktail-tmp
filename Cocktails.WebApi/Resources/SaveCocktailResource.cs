@@ -22,7 +22,16 @@ namespace Cocktails.WebApi.Resources
         [Required]
         public int CategoryId { get; set; }
 
-        [Required]
+        
+        public string Alcoholic { get; set; }
+
+        
+        public string Tags { get; set; }
+
+        
+        public string Glass { get; set; }
+
+        
         public List<Ingredient> Ingredients { get; set; }
     }
 }
