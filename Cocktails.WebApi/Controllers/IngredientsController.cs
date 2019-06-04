@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Cocktails.WebApi.Domain.Models;
-using Cocktails.WebApi.Domain.Services;
 using Cocktails.WebApi.Resources;
 using AutoMapper;
 using Cocktails.WebApi.Extensions;
+using Cocktails.Domain.Services;
+using Cocktails.Domain.Models;
 
 namespace Cocktails.WebApi.Controllers
 {

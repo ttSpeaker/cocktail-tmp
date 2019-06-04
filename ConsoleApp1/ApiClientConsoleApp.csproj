@@ -6,7 +6,8 @@
     <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cocktail.DataAccess\Cocktail.Persistance.csproj" />
+    <ProjectReference Include="..\Cocktail.DataAccess\Cocktails.Persistance.csproj" />
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>

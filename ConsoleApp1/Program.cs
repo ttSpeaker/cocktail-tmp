@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cocktails.WebApi.Resources;
-using Newtonsoft.Json.Linq;
-using Cocktails.WebApi.Persistence.Repositories;
-using Cocktails.WebApi.Domain.Repositories;
-using Cocktails.WebApi.Controllers;
-using Newtonsoft.Json;
 using ApiClientConsoleApp;
-using Microsoft.Extensions.DependencyInjection;
-using Cocktails.WebApi.Domain.Services;
-using Cocktails.WebApi.Services;
+using Cocktails.WebApi.Resources;
+
 
 // GET DATA DE LA API
 // PARSEAR LA DATA A OBJETO

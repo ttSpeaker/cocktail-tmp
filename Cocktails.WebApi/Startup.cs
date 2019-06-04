@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cocktails.WebApi.Persistence.Contexts;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +7,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Cocktails.WebApi.Domain.Services;
-using Cocktails.WebApi.Domain.Repositories;
-using Cocktails.WebApi.Services;
-using Cocktails.WebApi.Persistence.Repositories;
 using AutoMapper;
+using Cocktails.Persistence.Contexts;
+using Cocktails.Domain.Repositories;
+using Cocktails.WebApi.Services;
+using Cocktails.Persistence.Repositories;
+using Cocktails.Domain.Services;
 
 namespace Cocktails.WebApi
 {

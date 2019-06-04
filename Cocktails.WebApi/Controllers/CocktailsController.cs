@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Cocktails.WebApi.Domain.Models;
 using Cocktails.WebApi.Resources;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
-using Cocktails.WebApi.Domain.Services;
 using Cocktails.WebApi.Extensions;
+using Cocktails.Domain.Models;
+using Cocktails.Domain.Services;
 
 namespace Cocktails.WebApi.Controllers
 {
@@ -30,7 +27,7 @@ namespace Cocktails.WebApi.Controllers
         public async Task<IEnumerable<CocktailResource>> Get()
         {
             var cocktails = await _cocktailService.ListAsync();
-            var resources = _mapper.Map<IEnumerable<Cocktail>, IEnumerable<CocktailResource>>(cocktails);
+            var resources = _mapper.Map<IEnumerable<Domain.Models.Cocktail>, IEnumerable<CocktailResource>>(cocktails);
             return resources;
         }
 
@@ -39,7 +36,7 @@ namespace Cocktails.WebApi.Controllers
         public async Task<IEnumerable<CocktailResource>> Get(int id)
         {
             var cocktails = await _cocktailService.IdAsync(id);
-            var resources = _mapper.Map<IEnumerable<Cocktail>, IEnumerable<CocktailResource>>(cocktails);
+            var resources = _mapper.Map<IEnumerable<Domain.Models.Cocktail>, IEnumerable<CocktailResource>>(cocktails);
             return resources;
         }
 
@@ -51,7 +48,7 @@ namespace Cocktails.WebApi.Controllers
             {
                 return BadRequest(ModelState.GetErrorMessages());
             }
-            var cocktail = _mapper.Map<SaveCocktailResource, Cocktail>(resource);
+            var cocktail = _mapper.Map<SaveCocktailResource, Domain.Models.Cocktail>(resource);
             var result = await _cocktailService.AddAsync(cocktail, resource.Ingredients);
       
             if (!result.Success)
@@ -59,7 +56,7 @@ namespace Cocktails.WebApi.Controllers
                 return BadRequest(result.Message);
             }
 
-            var cocktailResource = _mapper.Map<Cocktail, CocktailResource>(result.Cocktail);
+            var cocktailResource = _mapper.Map<Domain.Models.Cocktail, CocktailResource>(result.Cocktail);
             return Ok(cocktailResource);
         }
 
@@ -72,13 +69,13 @@ namespace Cocktails.WebApi.Controllers
                 return BadRequest(ModelState.GetErrorMessages());
             }
 
-            var cocktail = _mapper.Map<SaveCocktailResource, Cocktail > (resource);
+            var cocktail = _mapper.Map<SaveCocktailResource, Domain.Models.Cocktail > (resource);
             var result = await _cocktailService.UpdateAsync(id, cocktail);
 
             if (!result.Success)
                 return BadRequest(result.Message);
 
-            var cocktailResource = _mapper.Map<Cocktail, CocktailResource>(result.Cocktail);
+            var cocktailResource = _mapper.Map<Domain.Models.Cocktail, CocktailResource>(result.Cocktail);
             return Ok(cocktailResource);
         }
 
@@ -91,7 +88,7 @@ namespace Cocktails.WebApi.Controllers
             {
                 return BadRequest(result.Message);
             }
-            var cocktailResource = _mapper.Map<Cocktail, CocktailResource>(result.Cocktail);
+            var cocktailResource = _mapper.Map<Domain.Models.Cocktail, CocktailResource>(result.Cocktail);
             return Ok(cocktailResource);
         }
     }

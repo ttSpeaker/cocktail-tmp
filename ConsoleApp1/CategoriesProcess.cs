@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Cocktails.WebApi.Resources;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Cocktails.WebApi.Resources;
 
 namespace ConsoleApp1
 {
