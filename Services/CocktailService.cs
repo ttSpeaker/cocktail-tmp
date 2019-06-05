@@ -21,17 +21,17 @@ namespace Cocktails.WebApi.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<Cocktail>> ListAsync()
+        public async Task<IEnumerable<Domain.Models.Cocktail>> ListAsync()
         {
             return await _cocktailRepository.ListAsync();
         }
 
-        public async Task<IEnumerable<Cocktail>> IdAsync(int id)
+        public async Task<IEnumerable<Domain.Models.Cocktail>> IdAsync(int id)
         {
             return await _cocktailRepository.IdAsync(id);
         }
 
-        public async Task<CocktailResponse> AddAsync(Cocktail cocktail, List<Ingredient> ingredients)
+        public async Task<CocktailResponse> AddAsync(Domain.Models.Cocktail cocktail, List<Ingredient> ingredients)
         {
 
             try
@@ -48,7 +48,7 @@ namespace Cocktails.WebApi.Services
         }
     
         
-        public async Task<CocktailResponse> UpdateAsync(int id, Cocktail cocktail)
+        public async Task<CocktailResponse> UpdateAsync(int id, Domain.Models.Cocktail cocktail)
         {
             var existingCocktail = await _cocktailRepository.FindIdAsync(id);
 

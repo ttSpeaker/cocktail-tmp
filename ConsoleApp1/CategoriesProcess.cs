@@ -1,14 +1,28 @@
-﻿using Cocktails.WebApi.Resources;
+﻿using AutoMapper;
+using Cocktails.Domain.Models;
+using Cocktails.Domain.Repositories;
+using Cocktails.WebApi.Resources;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ConsoleApp
 {
-    class CategoriesProcess
+    public class CategoriesProcess : ICategoriesProcess
     {
-        public static async Task<RawCategoriesList> LoadCategories()
+        private readonly ICategoryRepository _categoriesRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+
+        public CategoriesProcess(ICategoryRepository categoriesRepository, IUnitOfWork unitOfWork, IMapper mapper)
+        {
+            _mapper = mapper;
+            _categoriesRepository = categoriesRepository;
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task<RawCategoriesList> LoadCategories()
         {
             string url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list";
             using (HttpResponseMessage response = await ApiHelper.HttpClient.GetAsync(url))
@@ -24,7 +38,7 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static List<SaveCategoryResource> ProcessCategoryData (RawCategoriesList rawCategoriesList)
+        public List<SaveCategoryResource> ProcessCategoryData (RawCategoriesList rawCategoriesList)
         {
             List<SaveCategoryResource> categories = new List<SaveCategoryResource>();
             foreach (RawCategoryModel rawCat in rawCategoriesList.Drinks)
@@ -33,9 +47,15 @@ namespace ConsoleApp1
             }
             return categories;
         }
-        public static void SaveCategories(List<SaveCategoryResource> categories)
+        public async void SaveCategories(List<SaveCategoryResource> resources)
         {
             //SAVE EACH CATEGORY
+            foreach(SaveCategoryResource resource in resources)
+            {
+                var category = _mapper.Map<SaveCategoryResource, Category>(resource);
+                await _categoriesRepository.AddAsync(category);
+                await _unitOfWork.CompleteAsync();
+            }
         }
         
     }

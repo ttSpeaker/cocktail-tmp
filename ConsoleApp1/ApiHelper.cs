@@ -4,9 +4,9 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace ConsoleApp1
+namespace ConsoleApp
 {
-    class ApiHelper
+    public static class ApiHelper
     {
         public static HttpClient HttpClient { get; set; }
 
