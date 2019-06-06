@@ -6,13 +6,21 @@ namespace ApiClientConsoleApp
 {
     public class RawCocktailSimpleModel
     {
-        public int StrDrink { get; set; }
+        public int idDrink { get; set; }
     }
+
     public class RawCocktailIdsListModel
     {
-        public List<RawCocktailIdsListModel> Drinks { get; set; }
+        public List<RawCocktailSimpleModel> Drinks { get; set; }
     }
+
     public class RawCocktailFullModel
+    {
+        public List<RawCocktailFullModelItem> Drinks { get; set; }
+    }
+
+
+    public class RawCocktailFullModelItem
     {
         public string StrDrink { get; set; }
         public string StrTags { get; set; }

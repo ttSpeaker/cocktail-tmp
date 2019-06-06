@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Cocktails.Domain.Models;
-using Cocktails.Domain.Repositories;
+using Cocktails.Domain.Services;
 using Cocktails.WebApi.Resources;
 using System;
 using System.Collections.Generic;
@@ -11,15 +11,13 @@ namespace ConsoleApp
 {
     public class CategoriesProcess : ICategoriesProcess
     {
-        private readonly ICategoryRepository _categoriesRepository;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICategoryService _categoriesService;
         private readonly IMapper _mapper;
 
-        public CategoriesProcess(ICategoryRepository categoriesRepository, IUnitOfWork unitOfWork, IMapper mapper)
+        public CategoriesProcess(ICategoryService categoriesService, IMapper mapper)
         {
             _mapper = mapper;
-            _categoriesRepository = categoriesRepository;
-            _unitOfWork = unitOfWork;
+            _categoriesService = categoriesService;
         }
 
         public async Task<RawCategoriesList> LoadCategories()
@@ -50,21 +48,17 @@ namespace ConsoleApp
         public async void SaveCategories(List<SaveCategoryResource> resources)
         {
             //SAVE EACH CATEGORY
-            foreach(SaveCategoryResource resource in resources)
+            foreach (SaveCategoryResource resource in resources)
             {
                 var category = _mapper.Map<SaveCategoryResource, Category>(resource);
-                await _categoriesRepository.AddAsync(category);
-                await _unitOfWork.CompleteAsync();
+                await _categoriesService.SaveAsync(category);
             }
         }
-        
+        public async Task<IEnumerable<Category>> GetAllCategories()
+        {
+            return await _categoriesService.ListAsync();
+        }
+
+
     }
 }
-//class rawCategory
-//{
-//    public string strCategory { get; set; }
-//}
-//class rawCategoryList
-//{
-//    public List<rawCategory> Drinks { get; set; }
-//}

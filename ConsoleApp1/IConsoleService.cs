@@ -4,5 +4,6 @@
     {
         void Categories();
         void Ingredients();
+        void Cocktails();
     }
 }

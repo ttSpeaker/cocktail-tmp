@@ -1,4 +1,7 @@
-﻿using Cocktails.Domain.Repositories;
+﻿using AutoMapper;
+using Cocktails.Domain.Models;
+using Cocktails.Domain.Repositories;
+using Cocktails.Domain.Services;
 using Cocktails.WebApi.Resources;
 using ConsoleApp;
 using System;
@@ -10,12 +13,14 @@ namespace ApiClientConsoleApp
 {
     public class IngredientsProcess : IIngredientsProcess
     {
-        //private readonly IIngredientRepository _ingridientsRepository;
+        private readonly IIngredientService _ingridientsService;
+        private readonly IMapper _mapper;
 
-        //public IngredientsProcess(IIngredientRepository ingridientsRepository)
-        //{
-        //    _ingridientsRepository = ingridientsRepository;
-        //}
+        public IngredientsProcess(IIngredientService ingridientsService, IMapper mapper)
+        {
+            _ingridientsService = ingridientsService;
+            _mapper = mapper;
+        }
 
         public async Task<RawIngredientsList> LoadIngredients()
         {
@@ -42,13 +47,19 @@ namespace ApiClientConsoleApp
             }
             return ingredients;
         }
-        public void SaveIngredients(List<SaveIngredientResource> ingredients)
+        public async void SaveIngredients(List<SaveIngredientResource> resources)
         {
             //SAVE EACH INGREDIENT
-            foreach (SaveIngredientResource ingredient in ingredients)
+            foreach (SaveIngredientResource resource in resources)
             {
-                Console.WriteLine(ingredient.Name);
+                var ingredient = _mapper.Map<SaveIngredientResource, Ingredient>(resource);
+                await _ingridientsService.SaveAsync(ingredient);
             }
+        }
+        
+        public async Task<IEnumerable<Ingredient>> GetAllIngredients()
+        {
+            return await _ingridientsService.ListAsync();
         }
     }
 }

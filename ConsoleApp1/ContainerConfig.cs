@@ -1,14 +1,15 @@
 ﻿using Autofac;
 using AutoMapper;
+using Cocktails.Domain.Models;
 using Cocktails.Domain.Repositories;
+using Cocktails.Domain.Services;
 using Cocktails.Persistence.Contexts;
 using Cocktails.Persistence.Repositories;
 using Cocktails.WebApi.Mapping;
+using Cocktails.WebApi.Resources;
+using Cocktails.WebApi.Services;
 using ConsoleApp;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 
 namespace ApiClientConsoleApp
 {
@@ -22,7 +23,11 @@ namespace ApiClientConsoleApp
             builder.RegisterType<ConsoleService>().As<IConsoleService>();
             builder.RegisterType<CategoriesProcess>().As<ICategoriesProcess>();
             builder.RegisterType<IngredientsProcess>().As<IIngredientsProcess>();
-            //builder.RegisterType<CockTailsProcess>().As<ICocktailsProcess>();
+            builder.RegisterType <CocktailsProcess>().As<ICocktailProcess>();
+
+            builder.RegisterType<CategoryService>().As<ICategoryService>();
+            builder.RegisterType<IngredientService>().As<IIngredientService>();
+            builder.RegisterType<CocktailService>().As<ICocktailService>();
 
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>();
             builder.RegisterType<CocktailRepository>().As<ICocktailRepository>();
@@ -31,11 +36,11 @@ namespace ApiClientConsoleApp
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 
             var dbContextOptionsBuilder = new DbContextOptionsBuilder<AppDbContext>()
-                .UseSqlServer("DefaultConnectionString");
+                .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Cocktail;Trusted_Connection=True;MultipleActiveResultSets=true");
 
             builder.RegisterType<AppDbContext>()
                 .WithParameter("options", dbContextOptionsBuilder.Options)
-                .InstancePerLifetimeScope();
+                .SingleInstance();
 
             builder.RegisterType<ResourceToModelProfile>();
 
@@ -43,10 +48,9 @@ namespace ApiClientConsoleApp
 
             builder.Register(c => new MapperConfiguration(cfg =>
             {
-                foreach (var profile in c.Resolve<IEnumerable<Profile>>())
-                {
-                    cfg.AddProfile(profile);
-                }
+                cfg.CreateMap<SaveCategoryResource, Category>();
+                cfg.CreateMap<SaveCocktailResource, Cocktails.Domain.Models.Cocktail>();
+                cfg.CreateMap<SaveIngredientResource, Ingredient>();
             })).AsSelf().SingleInstance();
 
             builder.Register(c => c.Resolve<MapperConfiguration>()

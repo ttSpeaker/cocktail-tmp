@@ -15,8 +15,16 @@ namespace ApiClientConsoleApp
        
         public void Run()
         {
-            _consoleService.Categories();
-            _consoleService.Ingredients();
+            //Console.WriteLine("Load Categories");
+            //_consoleService.Categories();
+            //Console.WriteLine("Done Categories");
+
+            //Console.WriteLine("Load Ingredients");
+            //_consoleService.Ingredients();
+            //Console.WriteLine("Done Ingredients");
+
+            Console.WriteLine("Run Get Cocktails");
+            _consoleService.Cocktails();
         }
     }
 }

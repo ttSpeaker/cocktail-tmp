@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Cocktail.DataAccess\Cocktails.Persistance.csproj" />
     <ProjectReference Include="..\Cocktails.Domain\Cocktails.Domain.csproj" />
+    <ProjectReference Include="..\Services\Services.csproj" />
     <ProjectReference Include="..\ViewModels\ViewModels.csproj" />
   </ItemGroup>
   <PropertyGroup>

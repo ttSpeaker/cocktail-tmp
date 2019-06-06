@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
 using Cocktails.WebApi.Extensions;
 using Cocktails.Domain.Services;
 using Cocktails.WebApi.Resources;
 using Cocktails.Domain.Models;
+using AutoMapper;
 
 namespace Cocktails.WebApi.Controllers
 {
@@ -37,7 +37,8 @@ namespace Cocktails.WebApi.Controllers
                 return BadRequest(ModelState.GetErrorMessages());
             }
 
-            var category = _mapper.Map<SaveCategoryResource, Category>(resource);
+            //var category = _mapper.Map<SaveCategoryResource, Category>(resource);
+            var category = new Category() { Name = resource.Name };
             var result = await _categoryService.SaveAsync(category);
 
             if (!result.Success)
