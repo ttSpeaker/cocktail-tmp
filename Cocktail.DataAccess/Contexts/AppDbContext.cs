@@ -25,9 +25,9 @@ namespace Cocktails.Persistence.Contexts
             builder.Entity<Domain.Models.Cocktail>().ToTable("Cocktails");
             builder.Entity<Domain.Models.Cocktail>().HasKey(c => c.Id);
             builder.Entity<Domain.Models.Cocktail>().Property(c => c.Id).IsRequired().ValueGeneratedOnAdd();
-            builder.Entity<Domain.Models.Cocktail>().Property(c => c.Name).IsRequired().HasMaxLength(50);
-            builder.Entity<Domain.Models.Cocktail>().Property(c => c.Thumb).IsRequired();
-            builder.Entity<Domain.Models.Cocktail>().Property(c => c.Instructions).IsRequired();
+            builder.Entity<Domain.Models.Cocktail>().Property(c => c.Name).HasMaxLength(50);
+            builder.Entity<Domain.Models.Cocktail>().Property(c => c.Thumb);
+            builder.Entity<Domain.Models.Cocktail>().Property(c => c.Instructions);
             builder.Entity<Domain.Models.Cocktail>().Property(c => c.Glass);
             builder.Entity<Domain.Models.Cocktail>().Property(c => c.Alcoholic);
             builder.Entity<Domain.Models.Cocktail>().Property(c => c.Tags);

@@ -5,7 +5,9 @@ using Cocktails.WebApi.Resources;
 using ConsoleApp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ApiClientConsoleApp
@@ -80,86 +82,191 @@ namespace ApiClientConsoleApp
         {
             List<Ingredient> ingredients = new List<Ingredient>();
             Ingredient ingredient = new Ingredient();
-
-            if (rawCocktail.StrIngredient1.Length > 1)
+            if (rawCocktail.StrIngredient1 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient1.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
+                    if(ingredient != null)
+                    { 
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient2.Length > 1)
+            if (rawCocktail.StrIngredient2 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient2.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient2);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient3.Length > 1)
+            if (rawCocktail.StrIngredient3 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient3.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient3);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient4.Length > 1)
+            if (rawCocktail.StrIngredient4 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient4.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient4);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient5.Length > 1)
+            if (rawCocktail.StrIngredient5 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient5.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient5);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient6.Length > 1)
+            if (rawCocktail.StrIngredient6 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient6.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient6);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient7.Length > 1)
+            if (rawCocktail.StrIngredient7 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient7.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient7);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient8.Length > 1)
+            if (rawCocktail.StrIngredient8 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient8.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient8);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient9.Length > 1)
+            if (rawCocktail.StrIngredient9 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient9.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient9);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient10.Length > 1)
+            if (rawCocktail.StrIngredient10 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient10.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient10);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient11.Length > 1)
+            if (rawCocktail.StrIngredient11 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient11.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient11);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient12.Length > 1)
+            if (rawCocktail.StrIngredient12 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient12.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient12);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient13.Length > 1)
+            if (rawCocktail.StrIngredient13 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient13.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient13);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient14.Length > 1)
+            if (rawCocktail.StrIngredient14 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient14.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient14);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
-            if (rawCocktail.StrIngredient15.Length > 1)
+            if (rawCocktail.StrIngredient15 != null)
             {
-                ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient1);
-                ingredients.Add(ingredient);
+                if (rawCocktail.StrIngredient15.Length > 1)
+                {
+                    ingredient = AllIngredients.Find(i => i.Name == rawCocktail.StrIngredient15);
+                    if (ingredient != null)
+                    {
+                        ingredient.Name = Regex.Replace(ingredient.Name, @"\'", "");
+                        ingredients.Add(ingredient);
+                    }
+                }
             }
+            ingredients = ingredients.Distinct().ToList();
             return ingredients;
         }
 
-        public async void SaveCocktail (SaveCocktailResource resource, List<Ingredient> ingredients)
+        public async Task SaveCocktail (SaveCocktailResource resource, List<Ingredient> ingredients)
         {
             var cocktail = _mapper.Map<SaveCocktailResource, Cocktails.Domain.Models.Cocktail>(resource);
             await _cocktailsService.AddAsync(cocktail, ingredients);

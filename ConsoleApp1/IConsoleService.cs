@@ -1,9 +1,11 @@
-﻿namespace ApiClientConsoleApp
+﻿using System.Threading.Tasks;
+
+namespace ApiClientConsoleApp
 {
     public interface IConsoleService
     {
-        void Categories();
-        void Ingredients();
-        void Cocktails();
+        Task Categories();
+        Task Ingredients();
+        Task Cocktails();
     }
 }

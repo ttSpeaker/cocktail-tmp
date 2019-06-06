@@ -13,18 +13,18 @@ namespace ApiClientConsoleApp
             _consoleService = consoleService;
         }
        
-        public void Run()
+        public async void Run()
         {
             //Console.WriteLine("Load Categories");
-            //_consoleService.Categories();
+            //await _consoleService.Categories();
             //Console.WriteLine("Done Categories");
 
             //Console.WriteLine("Load Ingredients");
-            //_consoleService.Ingredients();
+            //await _consoleService.Ingredients();
             //Console.WriteLine("Done Ingredients");
 
-            Console.WriteLine("Run Get Cocktails");
-            _consoleService.Cocktails();
+            Console.WriteLine("run get cocktails");
+            await _consoleService.Cocktails();
         }
     }
 }

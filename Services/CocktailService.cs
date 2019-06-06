@@ -37,12 +37,18 @@ namespace Cocktails.WebApi.Services
             try
             {
                 await _cocktailRepository.AddAsync(cocktail, ingredients);
+
                 await _unitOfWork.CompleteAsync();
 
                 return new CocktailResponse(cocktail);
             }
             catch (Exception ex)
             {
+
+                Console.WriteLine($"An error occurred when saving the cocktail: {ex.Message}");
+                Console.WriteLine("Id: " + cocktail.Id);
+                Console.WriteLine("Name: " + cocktail.Name);
+                Console.WriteLine("Ingredient 1: " + cocktail.IngredientsTo[0].Ingredient.Name);
                 return new CocktailResponse($"An error occurred when saving the cocktail: {ex.Message}");
             }
         }
@@ -97,3 +103,4 @@ namespace Cocktails.WebApi.Services
         }
     }
 }
+

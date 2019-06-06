@@ -11,7 +11,7 @@ namespace ApiClientConsoleApp
         Task<RawCocktailFullModel> LoadCocktail(int strDrink);
         List<Ingredient> getCocktailIngredients(RawCocktailFullModelItem rawCocktail, List<Ingredient> AllIngredients);
         SaveCocktailResource ProcessCocktailData(RawCocktailFullModelItem rawCocktail, int catId);
-        void SaveCocktail(SaveCocktailResource resource, List<Ingredient> ingredients);
+        Task SaveCocktail(SaveCocktailResource resource, List<Ingredient> ingredients);
         int GetCategoryId(string categoryName, List<Category> allCategories);
     }
 }
