@@ -13,5 +13,6 @@ namespace Cocktails.Domain.Services
         Task<IngredientResponse> SaveAsync(Ingredient ingredient);
         Task<IngredientResponse> UpdateAsync(int id, Ingredient ingredient);
         Task<IngredientResponse> DeleteAsync(int id);
+        Task<Ingredient> FindByIdAsync(int id);
     }
 }

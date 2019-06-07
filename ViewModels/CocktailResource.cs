@@ -17,6 +17,6 @@ namespace Cocktails.WebApi.Resources
 
         public CategoryResource Category { get; set; }
 
-        public List<IngredientResource> IngredientsTo { get; set; }
+        public List<IngredientResource> Ingredients { get; set; }
     }
 }

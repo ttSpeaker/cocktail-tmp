@@ -25,6 +25,11 @@ namespace Cocktails.WebApi.Services
             return await _ingredientRepository.ListAsync();
         }
 
+        public async Task<Ingredient> FindByIdAsync(int id)
+        {
+           return await _ingredientRepository.FindByIdAsync(id);
+        }
+
         public async Task<IngredientResponse> SaveAsync(Ingredient ingredient)
         {
             try

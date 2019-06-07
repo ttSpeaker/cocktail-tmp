@@ -44,11 +44,6 @@ namespace Cocktails.WebApi.Services
             }
             catch (Exception ex)
             {
-
-                Console.WriteLine($"An error occurred when saving the cocktail: {ex.Message}");
-                Console.WriteLine("Id: " + cocktail.Id);
-                Console.WriteLine("Name: " + cocktail.Name);
-                Console.WriteLine("Ingredient 1: " + cocktail.IngredientsTo[0].Ingredient.Name);
                 return new CocktailResponse($"An error occurred when saving the cocktail: {ex.Message}");
             }
         }

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Cocktails.Domain.Models;
 using Cocktails.Domain.Repositories;
 using Cocktails.WebApi.Resources;
 using ConsoleApp;
+
 namespace ApiClientConsoleApp
 {
     public class ConsoleService : IConsoleService
