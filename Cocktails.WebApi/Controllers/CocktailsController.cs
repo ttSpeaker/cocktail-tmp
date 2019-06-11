@@ -4,7 +4,6 @@ using Cocktails.WebApi.Resources;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Cocktails.WebApi.Extensions;
-using Cocktails.Domain.Models;
 using Cocktails.Domain.Services;
 using Cocktails.Persistence.Contexts;
 
