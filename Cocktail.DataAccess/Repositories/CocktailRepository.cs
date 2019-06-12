@@ -33,7 +33,11 @@ namespace Cocktails.Persistence.Repositories
         {
             //ver como implementar obtener entidad con ID con EF y no con QUERYS de SQL
             //return await _context.Cocktails.Include(p => p.Category).Single(el => el.Id==id);
-            var query = await _context.Cocktails.FromSql("SELECT * from dbo.Cocktails WHERE Id={0}", id).ToListAsync();
+            var query = await _context.Cocktails.FromSql("SELECT * from dbo.Cocktails c " +
+                    "JOIN dbo.Categories ca ON c.CategoryId = ca.Id "+
+                    "JOIN dbo.CocktailIngredient ci ON ci.CocktailId = c.Id "+
+                    "JOIN dbo.Ingredients i ON ci.IngredientId = i.Id "+
+                    "WHERE c.Id = {0}", id).ToListAsync();
             return query;
         }
 
