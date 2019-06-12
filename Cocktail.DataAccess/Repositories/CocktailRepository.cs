@@ -31,16 +31,20 @@ namespace Cocktails.Persistence.Repositories
 
         public async Task<IEnumerable<Domain.Models.Cocktail>> IdAsync(int id)
         {
-            //ver como implementar obtener entidad con ID con EF y no con QUERYS de SQL
-            //return await _context.Cocktails.Include(p => p.Category).Single(el => el.Id==id);
-            var query = await _context.Cocktails.FromSql("SELECT * from dbo.Cocktails c " +
-                    "JOIN dbo.Categories ca ON c.CategoryId = ca.Id "+
-                    "JOIN dbo.CocktailIngredient ci ON ci.CocktailId = c.Id "+
-                    "JOIN dbo.Ingredients i ON ci.IngredientId = i.Id "+
-                    "WHERE c.Id = {0}", id).ToListAsync();
-            return query;
+            var response = await _context.Cocktails.Include(p => p.Category).Include(p => p.IngredientsTo).ThenInclude(p => p.Ingredient).Where(el => el.Id == id).ToListAsync();
+            return response;
+            //var query = await _context.Cocktails.FromSql("SELECT * from dbo.Cocktails c " +
+            //        "JOIN dbo.Categories ca ON c.CategoryId = ca.Id "+
+            //        "JOIN dbo.CocktailIngredient ci ON ci.CocktailId = c.Id "+
+            //        "JOIN dbo.Ingredients i ON ci.IngredientId = i.Id "+
+            //        "WHERE c.Id = {0}", id).ToListAsync();
+            //return query;
         }
-
+        public async Task<IEnumerable<Domain.Models.Cocktail>> ListByCategoryAsync(int catId)
+        {
+            var response = await _context.Cocktails.Include(p => p.Category).Include(p => p.IngredientsTo).ThenInclude(p => p.Ingredient).Where(el => el.CategoryId == catId).ToListAsync();
+            return response;
+        }
         public async Task<Domain.Models.Cocktail> FindIdAsync(int id)
         {
             return await _context.Cocktails.FindAsync(id);
