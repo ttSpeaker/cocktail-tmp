@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Cocktails.Persistance.Migrations
 {
-    public partial class CreateDBMigration : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,9 +39,9 @@ namespace Cocktails.Persistance.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 50, nullable: false),
-                    Thumb = table.Column<string>(nullable: false),
-                    Instructions = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 50, nullable: true),
+                    Thumb = table.Column<string>(nullable: true),
+                    Instructions = table.Column<string>(nullable: true),
                     Alcoholic = table.Column<string>(nullable: true),
                     Tags = table.Column<string>(nullable: true),
                     Glass = table.Column<string>(nullable: true),

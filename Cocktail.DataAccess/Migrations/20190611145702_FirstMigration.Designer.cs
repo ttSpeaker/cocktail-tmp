@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cocktails.Persistance.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20190606185027_Update in requirements")]
-    partial class Updateinrequirements
+    [Migration("20190611145702_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
