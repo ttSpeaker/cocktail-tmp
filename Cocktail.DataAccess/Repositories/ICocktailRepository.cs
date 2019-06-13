@@ -16,6 +16,8 @@ namespace Cocktails.Domain.Repositories
         void Update(Models.Cocktail cocktail);
         void Delete(Models.Cocktail cocktail);
         Task<IEnumerable<Domain.Models.Cocktail>> ListByCategoryAsync(int catId);
+        Task<IEnumerable<Domain.Models.Cocktail>> ListByIngredientAsync(int IngIds);
+        Task<IEnumerable<Domain.Models.Cocktail>> ListByNameAsync(string name);
         //Task AddRelations(int id, List<Ingredient> ing);
     }
 }

@@ -14,7 +14,10 @@ namespace Cocktails.Domain.Services
         Task<CocktailResponse> AddAsync(Cocktail cocktail, List<Ingredient> ingredients);
         Task<CocktailResponse> UpdateAsync(int id, Cocktail cocktail);
         Task<CocktailResponse> DeleteAsync(int id);
-        Task<IEnumerable<Domain.Models.Cocktail>> ListByCategoryAsync(int catId);
+        Task<IEnumerable<Cocktail>> ListByCategoryAsync(int catId);
+        Task<IEnumerable<Cocktail>> ListByIngredientAsync(int IngIds);
+        Task<IEnumerable<Cocktail>> ListByNameAsync(string name);
+
         //Task AddRelations(int id, List<Ingredient> ing);
     }
 }

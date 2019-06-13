@@ -35,6 +35,17 @@ namespace Cocktails.WebApi.Services
         {
             return await _cocktailRepository.ListByCategoryAsync(catId);
         }
+
+        public async Task<IEnumerable<Domain.Models.Cocktail>> ListByIngredientAsync(int IngIds)
+        {
+            return await _cocktailRepository.ListByIngredientAsync(IngIds);
+        }
+        
+        public async Task<IEnumerable<Domain.Models.Cocktail>> ListByNameAsync(string name)
+        {
+            return await _cocktailRepository.ListByNameAsync(name);
+        }
+
         public async Task<CocktailResponse> AddAsync(Domain.Models.Cocktail cocktail, List<Ingredient> ingredients)
         {
 

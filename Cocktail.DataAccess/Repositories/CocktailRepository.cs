@@ -45,6 +45,23 @@ namespace Cocktails.Persistence.Repositories
             var response = await _context.Cocktails.Include(p => p.Category).Include(p => p.IngredientsTo).ThenInclude(p => p.Ingredient).Where(el => el.CategoryId == catId).ToListAsync();
             return response;
         }
+
+        public async Task<IEnumerable<Domain.Models.Cocktail>> ListByIngredientAsync(int IngIds)
+        {
+            var response = await _context.Cocktails
+                .Include(p => p.Category)
+                .Include(p => p.IngredientsTo)
+                .ThenInclude(p => p.Ingredient)
+                .ToListAsync();
+            return response;
+        }
+
+        public async Task<IEnumerable<Domain.Models.Cocktail>> ListByNameAsync(string name)
+        {
+            var response = await _context.Cocktails.Include(p => p.Category).Include(p => p.IngredientsTo).ThenInclude(p => p.Ingredient).Where(c => EF.Functions.Like(c.Name, name)).ToListAsync();
+            return response;
+        }
+
         public async Task<Domain.Models.Cocktail> FindIdAsync(int id)
         {
             return await _context.Cocktails.FindAsync(id);

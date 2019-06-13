@@ -113,6 +113,47 @@ namespace Cocktails.WebApi.Controllers
             return resources;
             //var resources = _mapper.Map<IEnumerable<Domain.Models.Cocktail>, IEnumerable<CocktailResource>>(cocktails);
         }
+
+        // GET: api/Cocktails/ingredients/id
+        [HttpGet("ingredients/{IngIds}", Name = "GetByIng")]
+        public async Task<IEnumerable<CocktailResource>> GetByIng (int IngIds)
+        {
+            var cocktails = await _cocktailService.ListByIngredientAsync(IngIds);
+            List<CocktailResource> resources = new List<CocktailResource>();
+            foreach (Domain.Models.Cocktail cocktail in cocktails)
+            { 
+
+                CocktailResource resource = new CocktailResource()
+                {
+                    Id = cocktail.Id,
+                    Name = cocktail.Name,
+                    Alcoholic = cocktail.Alcoholic,
+                    Category = new CategoryResource() { Id = cocktail.Category.Id, Name = cocktail.Category.Name },
+                    Glass = cocktail.Glass,
+                    Tags = cocktail.Tags,
+                    Instructions = cocktail.Instructions,
+                    Thumb = cocktail.Thumb,
+                    Ingredients = new List<IngredientResource>() { }
+                };
+                bool containsIngredient = false;
+                foreach (CocktailIngredient ingredient in cocktail.IngredientsTo)
+                {
+                    if(ingredient.IngredientId == IngIds)
+                    {
+                        containsIngredient = true;
+                    }
+                    resource.Ingredients.Add(new IngredientResource() { Id = ingredient.Ingredient.Id, Name = ingredient.Ingredient.Name });
+                }
+
+                if (containsIngredient)
+                {
+                    resources.Add(resource);
+                }
+            }
+            return resources;
+            //var resources = _mapper.Map<IEnumerable<Domain.Models.Cocktail>, IEnumerable<CocktailResource>>(cocktails);
+        }
+
         // POST: api/Cocktails
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] SaveCocktailResource resource)
