@@ -151,9 +151,39 @@ namespace Cocktails.WebApi.Controllers
                 }
             }
             return resources;
-            //var resources = _mapper.Map<IEnumerable<Domain.Models.Cocktail>, IEnumerable<CocktailResource>>(cocktails);
+            
         }
+        // GET: api/Cocktails/name/name
+        [HttpGet("name/{name}", Name = "GetByname")]
+        public async Task<IEnumerable<CocktailResource>> GetByname(string name)
+        {
+            var cocktails = await _cocktailService.ListByNameAsync(name);
+            List<CocktailResource> resources = new List<CocktailResource>();
+            foreach (Domain.Models.Cocktail cocktail in cocktails)
+            {
 
+                CocktailResource resource = new CocktailResource()
+                {
+                    Id = cocktail.Id,
+                    Name = cocktail.Name,
+                    Alcoholic = cocktail.Alcoholic,
+                    Category = new CategoryResource() { Id = cocktail.Category.Id, Name = cocktail.Category.Name },
+                    Glass = cocktail.Glass,
+                    Tags = cocktail.Tags,
+                    Instructions = cocktail.Instructions,
+                    Thumb = cocktail.Thumb,
+                    Ingredients = new List<IngredientResource>() { }
+                };
+                foreach (CocktailIngredient ingredient in cocktail.IngredientsTo)
+                {           
+                    resource.Ingredients.Add(new IngredientResource() { Id = ingredient.Ingredient.Id, Name = ingredient.Ingredient.Name });
+                }
+
+                    resources.Add(resource);
+            }
+            return resources;
+
+        }
         // POST: api/Cocktails
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] SaveCocktailResource resource)
