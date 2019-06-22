@@ -19,7 +19,7 @@ namespace Cocktails.Persistence.Repositories
         }
 
         public async Task AddAsync(Category category)
-        {
+        { 
             await _context.Categories.AddAsync(category);
         }
 

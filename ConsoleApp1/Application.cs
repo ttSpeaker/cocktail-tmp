@@ -23,8 +23,8 @@ namespace ApiClientConsoleApp
             //await _consoleService.Ingredients();
             //Console.WriteLine("Done Ingredients");
 
-            Console.WriteLine("run get cocktails");
-            await _consoleService.Cocktails();
+            //Console.WriteLine("run get cocktails");
+            //await _consoleService.Cocktails();
         }
     }
 }

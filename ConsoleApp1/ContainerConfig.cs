@@ -36,7 +36,7 @@ namespace ApiClientConsoleApp
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 
             var dbContextOptionsBuilder = new DbContextOptionsBuilder<AppDbContext>()
-                .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Cocktail;Trusted_Connection=True;MultipleActiveResultSets=true");
+                .UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=body170firm169;Database=cocktails-db;");
 
             builder.RegisterType<AppDbContext>()
                 .WithParameter("options", dbContextOptionsBuilder.Options)
